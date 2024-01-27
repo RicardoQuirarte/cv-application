@@ -1,0 +1,21 @@
+.section {
+  display: grid;
+  place-content: center;
+  border: solid 1px;
+  padding: 15px;
+  background-color: white;
+}
+
+button {
+  margin-top: 10px;
+  border-color: green;
+}
+
+input {
+  text-align: center;
+}
+
+h3 {
+  border: solid 1px black;
+  padding: 5px;
+}
