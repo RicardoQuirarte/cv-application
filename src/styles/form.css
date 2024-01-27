@@ -1,6 +1,7 @@
 .section {
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: solid 1px;
   padding: 15px;
   background-color: white;
@@ -9,13 +10,23 @@
 button {
   margin-top: 10px;
   border-color: green;
+  width: 100px;
 }
 
 input {
   text-align: center;
 }
 
-h3 {
-  border: solid 1px black;
-  padding: 5px;
+h4 {
+  border-bottom: solid 1px black;
+  padding: 15px;
+  margin-top: 0px;
+}
+
+input {
+  width: 200px;
+}
+
+.info {
+  margin: 0px;
 }

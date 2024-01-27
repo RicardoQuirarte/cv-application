@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "/src/styles/form.css";
 
-export default function Experiment() {
+export default function General() {
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,15 +29,19 @@ export default function Experiment() {
   }
 
   return show ? (
-    <General
+    <Input
       toggleBool={handleChange}
-      name={handleName}
-      email={handleEmail}
-      phone={handlePhone}
-      location={handleLocation}
+      handleName={handleName}
+      name={name}
+      handleEmail={handleEmail}
+      email={email}
+      handlePhone={handlePhone}
+      phone={phone}
+      handleLocation={handleLocation}
+      location={location}
     />
   ) : (
-    <Create
+    <ShowData
       toggleBool={handleChange}
       name={name}
       email={email}
@@ -47,13 +51,25 @@ export default function Experiment() {
   );
 }
 
-function General({ toggleBool, name, email, phone, location }) {
+function Input({
+  toggleBool,
+  handleName,
+  name,
+  handleEmail,
+  email,
+  handlePhone,
+  phone,
+  handleLocation,
+  location,
+}) {
   return (
     <>
+      <h2>General information</h2>
       <form action="" className="section">
         <label htmlFor="name">Full name</label>
         <input
-          onChange={name}
+          onChange={handleName}
+          value={name}
           type="text"
           name="name"
           id="name"
@@ -61,7 +77,8 @@ function General({ toggleBool, name, email, phone, location }) {
         />
         <label htmlFor="email">Email</label>
         <input
-          onChange={email}
+          onChange={handleEmail}
+          value={email}
           type="email"
           name="email"
           id="email"
@@ -69,7 +86,8 @@ function General({ toggleBool, name, email, phone, location }) {
         />
         <label htmlFor="phone">Phone number</label>
         <input
-          onChange={phone}
+          onChange={handlePhone}
+          value={phone}
           type="tel"
           name="phone"
           id="phone"
@@ -78,7 +96,8 @@ function General({ toggleBool, name, email, phone, location }) {
         />
         <label htmlFor="location">Location</label>
         <input
-          onChange={location}
+          onChange={handleLocation}
+          value={location}
           type="text"
           name="location"
           id="location"
@@ -92,13 +111,18 @@ function General({ toggleBool, name, email, phone, location }) {
   );
 }
 
-function Create({ toggleBool, name, email, phone, location }) {
+function ShowData({ toggleBool, name, email, phone, location }) {
   return (
     <div className="section">
-      <h3>{name}</h3>
-      <h3>{email}</h3>
-      <h3>{phone}</h3>
-      <h3>{location}</h3>
+      <h2>General information</h2>
+      <p className="info">Name:</p>
+      <h4>{name}</h4>
+      <p className="info">Email:</p>
+      <h4>{email}</h4>
+      <p className="info">Phone:</p>
+      <h4>{phone}</h4>
+      <p className="info">Location:</p>
+      <h4>{location}</h4>
       <button onClick={toggleBool}>Edit</button>
     </div>
   );

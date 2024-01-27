@@ -9,7 +9,6 @@ import Practical from "./components/practical.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <h1>CV Application</h1>
-    <h2>General information</h2>
     <General />
     <h2>Educational Experience</h2>
     <Education />
