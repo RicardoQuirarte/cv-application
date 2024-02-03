@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "/src/styles/form.css";
 
-export default function General() {
+export default function Form({
+  title,
+  tel,
+  text,
+  field1,
+  field2,
+  field3,
+  field4,
+  extraInput,
+}) {
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
+  const [extra, setExtra] = useState("");
 
   function handleName(e) {
     setName(e.target.value);
@@ -24,6 +34,10 @@ export default function General() {
     setLocation(e.target.value);
   }
 
+  function handleExtra(e) {
+    setExtra(e.target.value);
+  }
+
   function handleChange() {
     setShow(!show);
   }
@@ -39,6 +53,16 @@ export default function General() {
       phone={phone}
       handleLocation={handleLocation}
       location={location}
+      handleExtra={handleExtra}
+      extra={extra}
+      tel={tel}
+      text={text}
+      field1={field1}
+      field2={field2}
+      field3={field3}
+      field4={field4}
+      title={title}
+      extraInput={extraInput}
     />
   ) : (
     <ShowData
@@ -60,48 +84,67 @@ function Input({
   handlePhone,
   phone,
   handleLocation,
+  handleExtra,
+  extra,
   location,
+  field1,
+  field2,
+  field3,
+  field4,
+  tel,
+  text,
+  title,
+  extraInput,
 }) {
   return (
     <>
-      <h2>General information</h2>
+      <h2>{title}</h2>
       <form action="" className="section">
-        <label htmlFor="name">Full name</label>
+        <label htmlFor="name">{field1}</label>
         <input
           onChange={handleName}
           value={name}
           type="text"
           name="name"
           id="name"
-          placeholder="Your name"
         />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">{field2}</label>
         <input
           onChange={handleEmail}
           value={email}
           type="email"
           name="email"
           id="email"
-          placeholder="example@gmail.com"
         />
-        <label htmlFor="phone">Phone number</label>
+        {extraInput ? (
+          <>
+            <label htmlFor="txtArea">Main responsabilities</label>
+            <textarea
+              onChange={handleExtra}
+              value={extra}
+              name="txt"
+              id="txt"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </>
+        ) : null}
+        <label htmlFor="phone">{field3}</label>
         <input
           onChange={handlePhone}
           value={phone}
-          type="tel"
+          type={tel}
           name="phone"
           id="phone"
-          placeholder="1234567890"
           maxLength="10"
         />
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">{field4}</label>
         <input
           onChange={handleLocation}
           value={location}
-          type="text"
+          type={text}
           name="location"
           id="location"
-          placeholder="Narnia"
         />
         <div>
           <button onClick={toggleBool}>Submit</button>
@@ -127,3 +170,25 @@ function ShowData({ toggleBool, name, email, phone, location }) {
     </div>
   );
 }
+
+// Store data
+function saveData() {
+  const info = JSON.stringify(todos);
+  localStorage.setItem("data", todosData);
+}
+
+function saveProjects() {
+  const projectsData = JSON.stringify(projectsNames);
+  localStorage.setItem("projects", projectsData);
+}
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("data")) {
+    todos = JSON.parse(localStorage.getItem("todos"));
+    displayTodos(todos);
+  }
+  if (localStorage.getItem("projects")) {
+    projectsNames = JSON.parse(localStorage.getItem("projects"));
+    displayProjects(projectsNames);
+  }
+});

@@ -23,7 +23,8 @@ h4 {
   margin-top: 0px;
 }
 
-input {
+input,
+textarea {
   width: 200px;
 }
 
