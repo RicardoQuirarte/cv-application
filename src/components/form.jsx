@@ -71,6 +71,13 @@ export default function Form({
       email={email}
       phone={phone}
       location={location}
+      title={title}
+      field1={field1}
+      field2={field2}
+      field3={field3}
+      field4={field4}
+      extraInput={extraInput}
+      extra={extra}
     />
   );
 }
@@ -154,41 +161,38 @@ function Input({
   );
 }
 
-function ShowData({ toggleBool, name, email, phone, location }) {
+function ShowData({
+  toggleBool,
+  name,
+  email,
+  phone,
+  location,
+  title,
+  field1,
+  field2,
+  field3,
+  field4,
+  extraInput,
+  extra,
+}) {
   return (
     <div className="section">
-      <h2>General information</h2>
-      <p className="info">Name:</p>
+      <h2>{title}</h2>
+      <p className="info">{field1}:</p>
       <h4>{name}</h4>
-      <p className="info">Email:</p>
+      <p className="info">{field2}:</p>
       <h4>{email}</h4>
-      <p className="info">Phone:</p>
+      {extraInput ? (
+        <>
+          <p className="extra">Main responsabilities</p>
+          <h4>{extra}</h4>
+        </>
+      ) : null}
+      <p className="info">{field3}:</p>
       <h4>{phone}</h4>
-      <p className="info">Location:</p>
+      <p className="info">{field4}:</p>
       <h4>{location}</h4>
       <button onClick={toggleBool}>Edit</button>
     </div>
   );
 }
-
-// Store data
-function saveData() {
-  const info = JSON.stringify(todos);
-  localStorage.setItem("data", todosData);
-}
-
-function saveProjects() {
-  const projectsData = JSON.stringify(projectsNames);
-  localStorage.setItem("projects", projectsData);
-}
-
-window.addEventListener("load", () => {
-  if (localStorage.getItem("data")) {
-    todos = JSON.parse(localStorage.getItem("todos"));
-    displayTodos(todos);
-  }
-  if (localStorage.getItem("projects")) {
-    projectsNames = JSON.parse(localStorage.getItem("projects"));
-    displayProjects(projectsNames);
-  }
-});
